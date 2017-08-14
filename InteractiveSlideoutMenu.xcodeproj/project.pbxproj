@@ -161,9 +161,13 @@
 				TargetAttributes = {
 					FCE69DAB1C67A61B004247E0 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Z33RQ32T74;
+						LastSwiftMigration = 0830;
 					};
 					FCE69DBF1C67A61B004247E0 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Z33RQ32T74;
+						LastSwiftMigration = 0830;
 						TestTargetID = FCE69DAB1C67A61B004247E0;
 					};
 				};
@@ -347,10 +351,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z33RQ32T74;
 				INFOPLIST_FILE = InteractiveSlideoutMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thorntech.InteractiveSlideoutMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -358,20 +364,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z33RQ32T74;
 				INFOPLIST_FILE = InteractiveSlideoutMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thorntech.InteractiveSlideoutMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		FCE69DCD1C67A61B004247E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z33RQ32T74;
 				INFOPLIST_FILE = InteractiveSlideoutMenuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thorntech.InteractiveSlideoutMenuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = InteractiveSlideoutMenu;
 				USES_XCTRUNNER = YES;
 			};
@@ -380,10 +390,12 @@
 		FCE69DCE1C67A61B004247E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z33RQ32T74;
 				INFOPLIST_FILE = InteractiveSlideoutMenuUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thorntech.InteractiveSlideoutMenuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = InteractiveSlideoutMenu;
 				USES_XCTRUNNER = YES;
 			};
@@ -408,6 +420,7 @@
 				FCE69DCB1C67A61B004247E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCE69DCC1C67A61B004247E0 /* Build configuration list for PBXNativeTarget "InteractiveSlideoutMenuUITests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +429,7 @@
 				FCE69DCE1C67A61B004247E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
