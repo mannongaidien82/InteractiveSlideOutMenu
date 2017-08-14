@@ -36,40 +36,40 @@ class MenuViewController : UIViewController {
     
     let menuItems = ["First", "Second"]
     
-    @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(view)
+    @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
 
-        let progress = MenuHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .Right)
+        let progress = MenuHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .right)
         
         MenuHelper.mapGestureStateToInteractor(
             sender.state,
             progress: progress,
             interactor: interactor){
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction func closeMenu(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeMenu(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
 }
 
 extension MenuViewController : UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = menuItems[indexPath.row]
         return cell
     }
 }
 
 extension MenuViewController : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
             menuActionDelegate?.openSegue("openFirst", sender: nil)
