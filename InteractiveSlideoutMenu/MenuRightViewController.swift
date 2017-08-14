@@ -26,25 +26,25 @@
 
 import UIKit
 
-class MenuViewController : UIViewController {
+class MenuRightViewController : UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var interactor:Interactor? = nil
+    var interactorRight:InteractorRight? = nil
     
-    var menuActionDelegate:MenuActionDelegate? = nil
+    var menuRightActionDelegate:MenuRightActionDelegate? = nil
     
     let menuItems = ["First", "Second"]
     
     @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
 
-        let progress = MenuHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .right)
+        let progress = MenuRightHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .right)
         
-        MenuHelper.mapGestureStateToInteractor(
+        MenuRightHelper.mapGestureStateToInteractor(
             sender.state,
             progress: progress,
-            interactor: interactor){
+            interactor: interactorRight){
                 self.dismiss(animated: true, completion: nil)
         }
     }
@@ -55,7 +55,7 @@ class MenuViewController : UIViewController {
     
 }
 
-extension MenuViewController : UITableViewDataSource {
+extension MenuRightViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
@@ -67,14 +67,14 @@ extension MenuViewController : UITableViewDataSource {
     }
 }
 
-extension MenuViewController : UITableViewDelegate {
+extension MenuRightViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            menuActionDelegate?.openSegue("openFirst", sender: nil)
+            menuRightActionDelegate?.openSegue("openFirst", sender: nil)
         case 1:
-            menuActionDelegate?.openSegue("openSecond", sender: nil)
+            menuRightActionDelegate?.openSegue("openSecond", sender: nil)
         default:
             break
         }

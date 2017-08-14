@@ -26,7 +26,7 @@
 
 import UIKit
 
-class Interactor: UIPercentDrivenInteractiveTransition {
+class InteractorRight: UIPercentDrivenInteractiveTransition {
     var hasStarted = false
     var shouldFinish = false
 }

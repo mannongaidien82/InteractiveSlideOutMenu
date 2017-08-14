@@ -1,5 +1,5 @@
 //
-//  PresentMenuAnimator.swift
+//  DismissMenuAnimator.swift
 //  InteractiveSlideoutMenu
 //
 //  Created by Robert Chen on 2/7/16.
@@ -26,12 +26,12 @@
 
 import UIKit
 
-class PresentMenuAnimator : NSObject {
+class DismissMenuRightAnimator : NSObject {
 }
 
-extension PresentMenuAnimator : UIViewControllerAnimatedTransitioning {
+extension DismissMenuRightAnimator : UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.6
+        return 0.2
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -42,26 +42,20 @@ extension PresentMenuAnimator : UIViewControllerAnimatedTransitioning {
                 return
         }
         let containerView = transitionContext.containerView
-        containerView.insertSubview(toVC.view, belowSubview: fromVC.view)
-        
-        // replace main view with snapshot
-        let snapshot = fromVC.view.snapshotView(afterScreenUpdates: false)
-        snapshot?.tag = MenuHelper.snapshotNumber
-        snapshot?.isUserInteractionEnabled = false
-        snapshot?.layer.shadowOpacity = 0.7
-        //containerView.insertSubview(snapshot, aboveSubview: toVC.view)
-        //containerView.insertSubview(toVC.view, belowSubview: fromVC.view)
-        containerView.insertSubview(snapshot! , aboveSubview: toVC.view)
-        fromVC.view.isHidden = true
+        let snapshot = containerView.viewWithTag(MenuRightHelper.snapshotNumber)
         
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
             animations: {
-                snapshot?.center.x -= UIScreen.main.bounds.width * MenuHelper.menuWidth
+                snapshot?.frame = CGRect(origin: CGPoint.zero, size: UIScreen.main.bounds.size)
             },
             completion: { _ in
-                fromVC.view.isHidden = false
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                let didTransitionComplete = !transitionContext.transitionWasCancelled
+                if didTransitionComplete {
+                    containerView.insertSubview(toVC.view, aboveSubview: fromVC.view)
+                    snapshot?.removeFromSuperview()
+                }
+                transitionContext.completeTransition(didTransitionComplete)
             }
         )
     }

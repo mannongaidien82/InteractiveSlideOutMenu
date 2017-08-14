@@ -26,13 +26,13 @@
 
 import UIKit
 
-protocol MenuActionDelegate {
+protocol MenuRightActionDelegate {
     func openSegue(_ segueName: String, sender: AnyObject?)
 }
 
 class MainViewController: UIViewController {
 
-    let interactor = Interactor()
+    let interactorRight = InteractorRight()
 
     @IBAction func openMenu(_ sender: AnyObject) {
         performSegue(withIdentifier: "openMenu", sender: nil)
@@ -41,21 +41,21 @@ class MainViewController: UIViewController {
     @IBAction func edgePanGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
         let translation = sender.translation(in: view)
         
-        let progress = MenuHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .left)
+        let progress = MenuRightHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .left)
         
-        MenuHelper.mapGestureStateToInteractor(
+        MenuRightHelper.mapGestureStateToInteractor(
             sender.state,
             progress: progress,
-            interactor: interactor){
+            interactor: interactorRight){
                 self.performSegue(withIdentifier: "openMenu", sender: nil)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? MenuViewController {
+        if let destinationViewController = segue.destination as? MenuRightViewController {
             destinationViewController.transitioningDelegate = self
-            destinationViewController.interactor = interactor
-            destinationViewController.menuActionDelegate = self
+            destinationViewController.interactorRight = interactorRight
+            destinationViewController.menuRightActionDelegate = self
         }
     }
 
@@ -63,23 +63,23 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PresentMenuAnimator()
+        return PresentMenuRightAnimator()
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DismissMenuAnimator()
+        return DismissMenuRightAnimator()
     }
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
+        return interactorRight.hasStarted ? interactorRight : nil
     }
     
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactor.hasStarted ? interactor : nil
+        return interactorRight.hasStarted ? interactorRight : nil
     }
 }
 
-extension MainViewController : MenuActionDelegate {
+extension MainViewController : MenuRightActionDelegate {
     func openSegue(_ segueName: String, sender: AnyObject?) {
         dismiss(animated: true){
             self.performSegue(withIdentifier: segueName, sender: sender)

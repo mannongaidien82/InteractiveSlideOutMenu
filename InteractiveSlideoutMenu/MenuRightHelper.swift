@@ -27,14 +27,14 @@
 import Foundation
 import UIKit
 
-enum Direction {
+enum MenuRightDirection {
     case up
     case down
     case left
     case right
 }
 
-struct MenuHelper {
+struct MenuRightHelper {
     
     static let menuWidth:CGFloat = 0.8
     
@@ -42,7 +42,7 @@ struct MenuHelper {
     
     static let snapshotNumber = 12345
     
-    static func calculateProgress(_ translationInView:CGPoint, viewBounds:CGRect, direction:Direction) -> CGFloat {
+    static func calculateProgress(_ translationInView:CGPoint, viewBounds:CGRect, direction:MenuRightDirection) -> CGFloat {
         let pointOnAxis:CGFloat
         let axisLength:CGFloat
         switch direction {
@@ -68,7 +68,7 @@ struct MenuHelper {
         }
     }
     
-    static func mapGestureStateToInteractor(_ gestureState:UIGestureRecognizerState, progress:CGFloat, interactor: Interactor?, triggerSegue: () -> ()){
+    static func mapGestureStateToInteractor(_ gestureState:UIGestureRecognizerState, progress:CGFloat, interactor: InteractorRight?, triggerSegue: () -> ()){
         guard let interactor = interactor else { return }
         switch gestureState {
         case .began:
